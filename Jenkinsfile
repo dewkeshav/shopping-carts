@@ -1,7 +1,7 @@
 pipeline {
   agent any
 
-  to enable
+//  to enable
     tools{
        maven 'maven' 
     }
