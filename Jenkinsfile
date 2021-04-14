@@ -1,11 +1,5 @@
 pipeline {
   agent any
-
-//  to enable
-    tools{
-       maven 'maven' 
-    }
-
   stages {
     stage('build') {
       steps {
@@ -27,12 +21,21 @@ pipeline {
         sh 'mvn package -DskipTests'
       }
     }
-  }
 
+    stage('Archive') {
+      steps {
+        archiveArtifacts '**/target/*.jar'
+      }
+    }
+
+  }
+  tools {
+    maven 'maven'
+  }
   post {
     always {
       echo 'this pipeline has completed...'
     }
-  }
 
+  }
 }
